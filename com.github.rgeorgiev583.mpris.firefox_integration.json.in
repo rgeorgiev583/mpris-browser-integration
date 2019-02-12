@@ -1,7 +1,7 @@
 {
   "name": "com.github.rgeorgiev583.mpris.browser_integration",
   "description": "Native connector for MPRIS",
-  "path": "@CMAKE_INSTALL_BINDIR@/mpris-browser-integration-host",
+  "path": "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_BINDIR@/mpris-browser-integration-host",
   "type": "stdio",
   "allowed_extensions": ["plasma-browser-integration@kde.org"]
 }
