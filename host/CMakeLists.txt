@@ -1,5 +1,7 @@
 include(GNUInstallDirs)
 
+set(CMAKE_AUTOMOC ON)
+
 set(HOST_SOURCES main.cpp
                 connection.cpp
                 mprisplugin.cpp
