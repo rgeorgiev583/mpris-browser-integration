@@ -13,7 +13,7 @@ add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
 
 # Options
 
-option(COPY_MESSAGING_HOST_FILE_HOME "Copy the native messaging hosts json file to user home dir" FALSE)
+option(COPY_MESSAGING_HOST_FILE_HOME "Copy the native messaging hosts json file to user home dir" TRUE)
 add_feature_info(COPY_MESSAGING_HOST_FILE_HOME ${COPY_MESSAGING_HOST_FILE_HOME} "Enable this option to copy the native messaging hosts json file to home dir if you install plasma-browser-integration to custom prefix (non-/usr)")
 
 add_subdirectory(host)
