@@ -27,7 +27,6 @@
 #include <QDBusConnection>
 #include <QDBusObjectPath>
 #include <QDebug>
-#include <QImageReader>
 
 #include "mprisroot.h"
 #include "mprisplayer.h"
@@ -426,8 +425,6 @@ void MPrisPlugin::processMetadata(const QJsonObject &data)
     QUrl artworkUrl;
     const QJsonArray &artwork = data.value(QStringLiteral("artwork")).toArray();
 
-    const auto &supportedImageMimes = QImageReader::supportedMimeTypes();
-
     for (auto it = artwork.constBegin(), end = artwork.constEnd(); it != end; ++it) {
         const QJsonObject &item = it->toObject();
 
@@ -452,11 +449,6 @@ void MPrisPlugin::processMetadata(const QJsonObject &data)
             }
 
             actualSize = QSize(width, height);
-        }
-
-        const QString type = item.value(QStringLiteral("type")).toString();
-        if (!type.isEmpty() && !supportedImageMimes.contains(type.toUtf8())) {
-            continue;
         }
 
         if (!biggest.isValid() || (actualSize.width() >= biggest.width() && actualSize.height() >= biggest.height())) {

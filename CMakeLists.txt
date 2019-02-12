@@ -9,9 +9,7 @@ set(QT_MIN_VERSION "5.9.0")
 include(FeatureSummary)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
-Gui
 DBus
-Widgets
 )
 
 add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)

@@ -13,8 +13,6 @@ add_executable(mpris-browser-integration-host ${HOST_SOURCES})
 target_link_libraries(
     mpris-browser-integration-host
     Qt5::DBus
-    Qt5::Gui
-    Qt5::Widgets
 )
 
 install(TARGETS mpris-browser-integration-host
