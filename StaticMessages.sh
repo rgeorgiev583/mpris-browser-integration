@@ -4,7 +4,7 @@
 
 
 # The name of catalog we create (without the.pot extension), sourced from the scripty scripts
-FILENAME="plasma-browser-extension"
+FILENAME="mpris-browser-extension"
 
 function export_pot_file # First parameter will be the path of the pot file we have to create, includes $FILENAME
 {

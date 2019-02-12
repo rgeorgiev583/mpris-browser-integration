@@ -1,0 +1,9 @@
+{
+  "name": "com.github.rgeorgiev583.mpris.browser_integration",
+  "description": "Native connector for MPRIS",
+  "path": "@CMAKE_INSTALL_BINDIR@/mpris-browser-integration-host",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://@CHROME_EXTENSION_ID@/"
+  ]
+}

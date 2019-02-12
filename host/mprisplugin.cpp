@@ -32,8 +32,6 @@
 #include "mprisroot.h"
 #include "mprisplayer.h"
 
-#include "settings.h"
-
 #include <unistd.h> // getppid
 
 static const QString s_serviceName = QStringLiteral("org.mpris.MediaPlayer2.plasma-browser-integration");
@@ -227,31 +225,11 @@ void MPrisPlugin::handleData(const QString &event, const QJsonObject &data)
 
 QString MPrisPlugin::identity() const
 {
-    switch (Settings::self().environment()) {
-    case Settings::Environment::Unknown: return QString();
-    case Settings::Environment::Chrome: return QStringLiteral("Google Chrome");
-    case Settings::Environment::Chromium: return QStringLiteral("Chromium");
-    case Settings::Environment::Firefox: return QStringLiteral("Firefox Web Browser");
-    case Settings::Environment::Opera: return QStringLiteral("Opera");
-    case Settings::Environment::Vivaldi: return QStringLiteral("Vivaldi");
-    }
-
     return QString();
 }
 
 QString MPrisPlugin::desktopEntry() const
 {
-    switch (Settings::self().environment()) {
-    case Settings::Environment::Unknown: return QString();
-    case Settings::Environment::Chrome: return QStringLiteral("google-chrome");
-    // TODO account for distros that want to be super special and install these with a different name
-    // perhaps we could do a KService lookup of some sort
-    case Settings::Environment::Chromium: return QStringLiteral("chromium-browser");
-    case Settings::Environment::Firefox: return QStringLiteral("firefox");
-    case Settings::Environment::Opera: return QStringLiteral("opera");
-    case Settings::Environment::Vivaldi: return QStringLiteral("vivaldi");
-    }
-
     return QString();
 }
 
@@ -372,11 +350,7 @@ QVariantMap MPrisPlugin::metadata() const
 
     // HACK this is needed or else SetPosition won't do anything
     // TODO use something more sensible, e.g. at least have the tab id with the player in there or so
-    metadata.insert(QStringLiteral("mpris:trackid"), QVariant::fromValue(QDBusObjectPath(QStringLiteral("/org/kde/plasma/browser_integration/1337"))));
-
-    // Task Manager matches the window to the player's PID but in our case
-    // the browser window isn't owned by us
-    metadata.insert(QStringLiteral("kde:pid"), getppid());
+    metadata.insert(QStringLiteral("mpris:trackid"), QVariant::fromValue(QDBusObjectPath(QStringLiteral("/com/github/rgeorgiev583/mpris/browser_integration/1337"))));
 
     const QString title = effectiveTitle();
     if (!title.isEmpty()) {
@@ -385,9 +359,6 @@ QVariantMap MPrisPlugin::metadata() const
 
     if (m_url.isValid()) {
         metadata.insert(QStringLiteral("xesam:url"), m_url.toDisplayString());
-    }
-    if (m_mediaSrc.isValid()) {
-        metadata.insert(QStringLiteral("kde:mediaSrc"), m_mediaSrc.toDisplayString());
     }
     if (m_length > 0) {
         metadata.insert(QStringLiteral("mpris:length"), m_length);

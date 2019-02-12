@@ -18,9 +18,6 @@ https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_w
 
 Tags:
 
-Plasma/5.N
-refer to the Plasma releases of the host managed by Riddell
-
 browser/N.N
 refer to tags of extensions uploaded to the various stores. They should match the manifest version
 

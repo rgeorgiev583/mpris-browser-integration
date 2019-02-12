@@ -23,7 +23,6 @@
 
 #include "abstractbrowserplugin.h"
 #include "connection.h"
-#include "settings.h"
 
 AbstractBrowserPlugin::AbstractBrowserPlugin::AbstractBrowserPlugin(const QString& subsystemId, int protocolVersion, QObject* parent):
     QObject(parent),
@@ -98,5 +97,5 @@ void AbstractBrowserPlugin::setLoaded(bool loaded)
 
 QJsonObject AbstractBrowserPlugin::settings() const
 {
-    return Settings::self().settingsForPlugin(m_subsystem);
+    return QJsonObject();
 }
